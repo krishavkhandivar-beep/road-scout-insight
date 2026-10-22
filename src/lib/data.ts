@@ -28,13 +28,13 @@ export interface Defect {
 export const images = { road1, road2 };
 
 const b1: Box[] = [
-  { x: 30, y: 58, w: 18, h: 14, label: "Pothole", conf: 0.94 },
-  { x: 58, y: 70, w: 16, h: 12, label: "Pothole", conf: 0.88 },
-  { x: 46, y: 40, w: 8, h: 26, label: "Crack", conf: 0.76 },
+  { x: 13, y: 49, w: 25, h: 19, label: "Pothole", conf: 0.94 },
+  { x: 62, y: 35, w: 14, h: 7, label: "Pothole", conf: 0.88 },
+  { x: 44, y: 30, w: 9, h: 56, label: "Crack", conf: 0.76 },
 ];
 const b2: Box[] = [
-  { x: 38, y: 48, w: 26, h: 22, label: "Pothole", conf: 0.91 },
-  { x: 12, y: 30, w: 24, h: 30, label: "Alligator crack", conf: 0.82 },
+  { x: 22, y: 19, w: 35, h: 44, label: "Pothole", conf: 0.91 },
+  { x: 58, y: 38, w: 34, h: 48, label: "Alligator crack", conf: 0.82 },
 ];
 
 const raw: Array<Omit<Defect, "image" | "boxes"> & { img: 1 | 2 }> = [
