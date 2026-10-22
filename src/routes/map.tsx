@@ -7,7 +7,7 @@ import { useStore } from "@/lib/store";
 import { fmtDate } from "@/lib/data";
 
 export const Route = createFileRoute("/map")({
-  validateSearch: (s: Record<string, unknown>) => ({ id: typeof s.id === "string" ? s.id : undefined }),
+  validateSearch: (s: Record<string, unknown>): { id?: string } => ({ id: typeof s["id"] === "string" ? (s["id"] as string) : undefined }),
   head: () => ({
     meta: [
       { title: "Defect Map · Road Distress Mapper" },
@@ -38,7 +38,7 @@ function MapPage() {
           (type === "All types" || d.type === type) &&
           (sev === "All severities" || d.severity === sev) &&
           (status === "All statuses" || d.status === status) &&
-          (NOW - new Date(d.date).getTime()) / 864e5 <= days[date],
+          (NOW - new Date(d.date).getTime()) / 864e5 <= (days[date] ?? 9999),
       ),
     [defects, type, sev, date, status],
   );
