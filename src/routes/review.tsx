@@ -6,7 +6,7 @@ import { useStore } from "@/lib/store";
 import { fmtDate, priorityScore, type DefectType, type Severity } from "@/lib/data";
 
 export const Route = createFileRoute("/review")({
-  validateSearch: (s: Record<string, unknown>) => ({ id: typeof s.id === "string" ? s.id : undefined }),
+  validateSearch: (s: Record<string, unknown>): { id?: string } => ({ id: typeof s["id"] === "string" ? (s["id"] as string) : undefined }),
   head: () => ({
     meta: [
       { title: "Defect Review · Road Distress Mapper" },
@@ -23,7 +23,7 @@ function Review() {
   const { id } = Route.useSearch();
   const nav = useNavigate();
   const queue = defects.filter((d) => d.status === "Pending");
-  const d = defects.find((x) => x.id === id) ?? queue[0] ?? defects[0];
+  const d = defects.find((x) => x.id === id) ?? queue[0] ?? defects[0]!;
   const [overlay, setOverlay] = useState(true);
   const [editing, setEditing] = useState(false);
   const [cType, setCType] = useState<string>(d.type);
